@@ -18,6 +18,7 @@ import {
   CherryIcon,
   IconProps,
 } from "@/components/ui/icons/i";
+import KidFriendlyDialog from "./dialogue";
 
 interface ProduceItem {
   name: string;
@@ -96,7 +97,6 @@ const ProduceCard: React.FC<ProduceCardProps> = ({ item, onClick }) => (
     </div>
   </Card>
 );
-
 const KidsZoneFruitsVeggies: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<ProduceItem | null>(null);
 
@@ -115,31 +115,11 @@ const KidsZoneFruitsVeggies: React.FC = () => {
         ))}
       </div>
 
-      <Dialog open={!!selectedItem} onOpenChange={() => setSelectedItem(null)}>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle className="text-2xl flex items-center">
-              {selectedItem && (
-                <>
-                  <selectedItem.icon
-                    className="w-8 h-8 mr-2"
-                    style={{ color: selectedItem.color }}
-                  />
-                  {selectedItem.name}
-                </>
-              )}
-            </DialogTitle>
-            <DialogDescription className="text-lg">
-              {selectedItem?.benefits}
-            </DialogDescription>
-          </DialogHeader>
-          <div className="mt-4">
-            <Button onClick={() => setSelectedItem(null)}>Close</Button>
-          </div>
-        </DialogContent>
-      </Dialog>
+      <KidFriendlyDialog
+        selectedItem={selectedItem}
+        setSelectedItem={setSelectedItem as (item: ProduceItem | null) => void}
+      />
     </div>
   );
 };
-
 export default KidsZoneFruitsVeggies;
