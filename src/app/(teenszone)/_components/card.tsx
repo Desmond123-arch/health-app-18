@@ -1,7 +1,8 @@
 // components/ProduceCard.tsx
-import { ProduceItem } from "@/lib/types";
+
 import { motion } from "framer-motion";
 import React from "react";
+import { ProduceItem } from "./utils/data";
 
 interface ProduceCardProps {
   item: ProduceItem;
