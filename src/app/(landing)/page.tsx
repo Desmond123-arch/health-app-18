@@ -1,11 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import Link from "next/link";
 
 export default function Home() {
@@ -22,13 +15,15 @@ export default function Home() {
       </section>
       <section className="lg:max-w-4xl mx-auto flex flex-col gap-10 lg:flex-row justify-center items-center">
         {/* kids zone link card */}
-        <Card className="bg-primary text-primary-foreground rounded-xl overflow-hidden">
+        <Card className="bg-[#FF2D55] text-white rounded-3xl overflow-hidden transform hover:scale-105 transition-transform duration-300 shadow-lg">
           <div className="p-8 flex flex-col items-center">
-            <BabyIcon className="w-16 h-16 mb-6" />
-            <h3 className="text-3xl font-bold mb-4">Kids Zone</h3>
-            <p className="text-center mb-8 max-w-md">
-              Discover the amazing health benefits of fruits and vegetables with
-              our app!
+            <BabyIcon className="w-20 h-20 mb-6 animate-bounce" />
+            <h3 className="text-4xl font-bold mb-4 font-bubblegum">
+              Kids Zone
+            </h3>
+            <p className="text-center mb-8 max-w-md text-lg">
+              Join the fruit and veggie adventure! Discover amazing superpowers
+              hidden in your food!
             </p>
             <div className="grid grid-cols-2 gap-6 mb-8 w-full max-w-sm">
               <Card className="bg-primary-foreground/10 text-primary-foreground p-4 rounded-xl">
@@ -55,34 +50,45 @@ export default function Home() {
         </Card>
 
         {/* teens zone link card */}
-        <Card className="bg-secondary-foreground/10 text-primary rounded-xl overflow-hidden">
-          <div className="p-8 flex flex-col items-center">
-            <UsersIcon className="w-16 h-16 mb-6" />
-            <h3 className="text-3xl font-bold mb-4">Teens Zone</h3>
-            <p className="text-center mb-8 max-w-md">
-              Discover the amazing health benefits of fruits and vegetables with
-              our app!
+        <Card className="z-20 bg-gradient-to-br from-[#5856D6] to-indigo-800 text-white rounded-2xl overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-xl">
+          <div className="p-8 flex flex-col items-center relative">
+            {/* Background elements */}
+            <div className="absolute top-0 left-0 w-full h-full opacity-10">
+              <div className="absolute top-5 left-5 w-20 h-20 rounded-full bg-teal-400"></div>
+              <div className="absolute bottom-5 right-5 w-16 h-16 rounded-full bg-orange-400"></div>
+            </div>
+
+            {/* Content */}
+            <UsersIcon className="w-20 h-20 mb-6 text-teal-400" />
+            <h3 className="text-4xl font-bold mb-4 font-montserrat">
+              Teens Zone
+            </h3>
+            <p className="text-center mb-8 max-w-md text-lg font-poppins">
+              Level up your health game! Explore the science behind nutrition
+              and boost your performance.
             </p>
+
             <div className="grid grid-cols-2 gap-6 mb-8 w-full max-w-sm">
-              <Card className="bg-secondary-foreground/20 text-primary p-4 rounded-xl">
+              <Card className="bg-white/10 text-white p-4 rounded-xl backdrop-blur-sm">
                 <div className="flex flex-col items-center">
-                  <CarrotIcon className="w-10 h-10 mb-2" />
-                  <p className="text-center font-medium">Vegetables</p>
+                  <CarrotIcon className="w-12 h-12 mb-2 text-orange-400" />
+                  <p className="text-center font-medium">Power Veggies</p>
                 </div>
               </Card>
-              <Card className="bg-secondary-foreground/20 text-primary p-4 rounded-xl">
+              <Card className="bg-white/10 text-white p-4 rounded-xl backdrop-blur-sm">
                 <div className="flex flex-col items-center">
-                  <BananaIcon className="w-10 h-10 mb-2" />
-                  <p className="text-center font-medium">Fruits</p>
+                  <BananaIcon className="w-12 h-12 mb-2 text-yellow-400" />
+                  <p className="text-center font-medium">Super Fruits</p>
                 </div>
               </Card>
             </div>
+
             <Link
               href="/teens"
-              className="inline-flex items-center justify-center h-12 px-8 rounded-full bg-primary text-primary-foreground font-medium text-lg transition-colors hover:bg-primary/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-secondary"
+              className="z-20 inline-flex items-center justify-center h-12 px-8 rounded-full bg-teal-400 text-purple-900 font-bold text-lg transition-all hover:bg-teal-300 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-teal-400"
               prefetch={false}
             >
-              Enter Teens Zone
+              Explore Teens Zone
             </Link>
           </div>
         </Card>

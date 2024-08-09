@@ -1,11 +1,12 @@
 import { Apple, Banana, Carrot, Grape, LucideIcon } from "lucide-react";
 
 export interface ProduceItem {
+  id: string;
   name: string;
   icon: LucideIcon;
+  benefits: string[];
+  details: string;
   color: string;
-  benefits: string;
-  funFact: string;
 }
 
 export const produceItems: ProduceItem[] = [

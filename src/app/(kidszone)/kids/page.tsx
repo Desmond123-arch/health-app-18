@@ -1,10 +1,8 @@
-import React from "react";
-import KidsZoneFruitsVeggies from "../_components/cards";
+import KidsZoneFruitsVeggies from "../_components/fruits-vegies";
 
 const KidsPage = () => {
   return (
     <div>
-      {" "}
       <KidsZoneFruitsVeggies />
     </div>
   );
