@@ -1,4 +1,4 @@
-import { ProduceItem } from "@/lib/data";
+import { ProduceItem } from "@/app/(kidszone)/_components/utils/data";
 import confetti from "canvas-confetti";
 import { motion } from "framer-motion";
 import React, { useState } from "react";

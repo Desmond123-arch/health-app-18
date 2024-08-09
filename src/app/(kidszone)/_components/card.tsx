@@ -1,6 +1,6 @@
 "use client";
 
-import { ProduceItem } from "@/lib/data";
+import { ProduceItem } from "@/app/(kidszone)/_components/utils/data";
 import { motion } from "framer-motion";
 import React from "react";
 
