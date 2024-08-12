@@ -69,7 +69,7 @@ const NutritionInfoPage: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
       >
-        <Link href="/quiz">
+        <Link href="/teens/quiz">
           <Button
             size="lg"
             className="rounded-full text-lg px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white"
