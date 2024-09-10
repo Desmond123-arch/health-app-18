@@ -54,7 +54,7 @@ const TeensZone: React.FC = () => {
   const [dailyProgress, setDailyProgress] = useState(0);
   const [questions, setQuestions] = useState(getRandomQuestions());
   let [questionNumber, setQuestionNumber] = useState(1);
-  const [answerSelected, setAnswerSelected] = useState<Record<number, number>>({});
+  const [answerSelected, setAnswerSelected] = useState<String>('');
   const [showAnswer, setShowAnswer] = useState(false);
   const [incorrect, setIncorrect] = useState<String>();
   useEffect(() => {
@@ -73,20 +73,34 @@ const TeensZone: React.FC = () => {
     setCurrentQuiz(true);
   };
 
-  const handleAnswer = (id: String, answer:String) => {
-    const isCorrect = id === answer
-    console.log(id);
-    if (isCorrect) {
-      setScore((prev) => prev + 1);
-      setStreak((prev) => prev + 1);
-      setQuestionNumber(questionNumber=questionNumber+1)
-      setShowAnswer(false);
+  const handleAnswer = (id: String, answer: String) => {
+    const isCorrect = id === answer;
+  
+    if (!showAnswer) {
+      // If the answer is correct, immediately move to the next question
+      if (isCorrect) {
+        setScore((prev) => prev + 1);
+        setStreak((prev) => prev + 1);
+        setQuestionNumber((prev) => prev + 1);
+        setShowAnswer(false); // Reset showAnswer in case of the next question
+        setIncorrect(''); // Reset incorrect state
+        setAnswerSelected(''); // Reset selected answer
+      } else {
+        // If the answer is incorrect, show the correct answer and allow them to move to the next question afterward
+        setStreak(0);
+        setIncorrect(id);
+        setShowAnswer(true);
+      }
     } else {
-      setStreak(0);
-      setShowAnswer(true);
-      setIncorrect(id);
+      // Move to next question after showing the correct answer
+      setQuestionNumber((prev) => prev + 1);
+      setShowAnswer(false);
+      setIncorrect(''); // Reset incorrect state
+      setAnswerSelected(''); // Reset selected answer
     }
   };
+  
+  
   const startAgain = () => {
     setShowAnswer(false);
     setQuestionNumber(1);
@@ -139,11 +153,15 @@ const TeensZone: React.FC = () => {
                       {questions[questionNumber - 1].options.map((option) => (
                         <Button
                           key={option.id}
-                          onClick={() => handleAnswer(option.id, questions[questionNumber - 1].correctAnswer)}
+                          onClick={() => 
+                          {
+                            handleAnswer(option.id, questions[questionNumber - 1].correctAnswer);
+                            setAnswerSelected(option.id);
+                          }
+                          }
                           className={clsx(
-                            "w-full border border-black my-2 rounded-md",
-                            { "bg-white text-black": answerSelected[questionNumber] === parseInt(option.id) },
-                            {"bg-red-800": option.id === incorrect },
+                            "w-full border border-black my-2 bg-black text-white rounded-md",
+                            {"bg-red-800": option.id === incorrect && showAnswer},
                             { "bg-green-700 text-white": option.id === questions[questionNumber - 1].correctAnswer && showAnswer }
                           )}
                         >
