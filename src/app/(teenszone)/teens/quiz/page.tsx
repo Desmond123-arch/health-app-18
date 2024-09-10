@@ -139,7 +139,7 @@ const TeensZone: React.FC = () => {
                           onClick={() => handleAnswer(option.id, questions[questionNumber - 1].correctAnswer)}
                           className={clsx(
                             "w-full border border-black my-2 rounded-md",
-                            { "bg-white text-black": answerSelected[questionNumber] === option.id },
+                            { "bg-white text-black": answerSelected[questionNumber] === parseInt(option.id) },
                             { "bg-green-700 text-white": option.id === questions[questionNumber - 1].correctAnswer && showAnswer }
                           )}
                         >
