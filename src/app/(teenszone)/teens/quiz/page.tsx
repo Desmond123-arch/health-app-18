@@ -8,6 +8,7 @@ import { Apple, Banana, Carrot } from "lucide-react";
 import { data } from "./data";
 import clsx from "clsx";
 
+
 function getRandomQuestions() {
   const randomValues: number[] = [];
   const questions = [];
@@ -55,7 +56,7 @@ const TeensZone: React.FC = () => {
   let [questionNumber, setQuestionNumber] = useState(1);
   const [answerSelected, setAnswerSelected] = useState<Record<number, number>>({});
   const [showAnswer, setShowAnswer] = useState(false);
-
+  const [incorrect, setIncorrect] = useState<String>();
   useEffect(() => {
     // Simulating daily progress update
     const fetchedQuestions = getRandomQuestions();
@@ -74,6 +75,7 @@ const TeensZone: React.FC = () => {
 
   const handleAnswer = (id: String, answer:String) => {
     const isCorrect = id === answer
+    console.log(id);
     if (isCorrect) {
       setScore((prev) => prev + 1);
       setStreak((prev) => prev + 1);
@@ -82,6 +84,7 @@ const TeensZone: React.FC = () => {
     } else {
       setStreak(0);
       setShowAnswer(true);
+      setIncorrect(id);
     }
   };
   const startAgain = () => {
@@ -140,6 +143,7 @@ const TeensZone: React.FC = () => {
                           className={clsx(
                             "w-full border border-black my-2 rounded-md",
                             { "bg-white text-black": answerSelected[questionNumber] === parseInt(option.id) },
+                            {"bg-red-800": option.id === incorrect },
                             { "bg-green-700 text-white": option.id === questions[questionNumber - 1].correctAnswer && showAnswer }
                           )}
                         >
