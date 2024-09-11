@@ -24,7 +24,8 @@ const Navigation = () => {
         <div className="flex items-center space-x-2">
           <Button
             variant="default"
-            className="inline-flex gap-2 rounded-full text-sm"
+            className="inline-flex gap-2 rounded-full text-sm bg-gradient-to-r from-green-400 to-blue-500 
+            hover:scale-110 transition duration-700 ease-in-out"
           >
             <Baby />
             Kidszone

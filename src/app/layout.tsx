@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Gabarito } from "next/font/google";
+import Navigation from "./(landing)/_components/navbar";
 import "./globals.css";
-import { ShootingStars } from "@/components/ui/backgrounds/shooting-stars";
-import { StarsBackground } from "@/components/ui/backgrounds/shooting-background";
 
 const inter = Gabarito({ subsets: ["latin"] });
 
@@ -18,7 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}
+      <body className={inter.className}>
+        {" "}
+        <Navigation />
+        {children}
       </body>
     </html>
   );

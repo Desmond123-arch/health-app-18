@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { CtaButton } from "./cta-button";
 
 const Hero = () => {
   return (
@@ -20,13 +20,7 @@ const Hero = () => {
             activities for a happier you!
           </p>
           <div className="space-x-4">
-            <Button
-              variant="default"
-              size="lg"
-              className="rounded-full animate-bounce"
-            >
-              Start Your Journey
-            </Button>
+            <CtaButton />
           </div>
         </div>
       </div>
