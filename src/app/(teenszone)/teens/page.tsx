@@ -24,6 +24,7 @@ const NutritionInfoPage: React.FC = () => {
         transition={{ delay: 0.3, duration: 0.8 }}
         className="bg-gradient-to-r from-green-400 to-blue-500 rounded-lg shadow-lg p-8 mb-12 container mx-auto"
       >
+
         <h2 className="text-3xl font-bold text-white mb-4">
           Test Your Nutrition Knowledge!
         </h2>

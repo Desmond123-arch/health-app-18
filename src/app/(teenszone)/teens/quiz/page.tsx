@@ -5,6 +5,28 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Apple, Banana, Carrot } from "lucide-react";
+import { data } from "./data";
+import clsx from "clsx";
+
+
+function getRandomQuestions() {
+  const randomValues: number[] = [];
+  const questions = [];
+  const numQuestions = data['quiz'].questions.length;
+
+  while (randomValues.length < 5) {
+    const value = Math.floor(Math.random() * numQuestions);
+    if (!randomValues.includes(value)) {
+      randomValues.push(value);
+    }
+  }
+
+  for (const index of randomValues) {
+    questions.push(data['quiz'].questions[index]);
+  }
+
+  return questions;
+}
 
 const produceItems = [
   {
@@ -26,13 +48,19 @@ const produceItems = [
 ];
 
 const TeensZone: React.FC = () => {
-  const [currentQuiz, setCurrentQuiz] = useState<number | null>(null);
+  const [currentQuiz, setCurrentQuiz] = useState(false);
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
   const [dailyProgress, setDailyProgress] = useState(0);
-
+  const [questions, setQuestions] = useState(getRandomQuestions());
+  let [questionNumber, setQuestionNumber] = useState(1);
+  const [answerSelected, setAnswerSelected] = useState<String>('');
+  const [showAnswer, setShowAnswer] = useState(false);
+  const [incorrect, setIncorrect] = useState<String>();
   useEffect(() => {
     // Simulating daily progress update
+    const fetchedQuestions = getRandomQuestions();
+    setQuestions(fetchedQuestions);
     const interval = setInterval(() => {
       setDailyProgress((prev) => (prev < 100 ? prev + 10 : 0));
     }, 3000);
@@ -40,20 +68,47 @@ const TeensZone: React.FC = () => {
   }, []);
 
   const startQuiz = () => {
-    setCurrentQuiz(Math.floor(Math.random() * produceItems.length));
     setScore(0);
     setStreak(0);
+    setCurrentQuiz(true);
   };
 
-  const handleAnswer = (correct: boolean) => {
-    if (correct) {
-      setScore((prev) => prev + 1);
-      setStreak((prev) => prev + 1);
+  const handleAnswer = (id: String, answer: String) => {
+    const isCorrect = id === answer;
+  
+    if (!showAnswer) {
+      // If the answer is correct, immediately move to the next question
+      if (isCorrect) {
+        setScore((prev) => prev + 1);
+        setStreak((prev) => prev + 1);
+        setQuestionNumber((prev) => prev + 1);
+        setShowAnswer(false); // Reset showAnswer in case of the next question
+        setIncorrect(''); // Reset incorrect state
+        setAnswerSelected(''); // Reset selected answer
+      } else {
+        // If the answer is incorrect, show the correct answer and allow them to move to the next question afterward
+        setStreak(0);
+        setIncorrect(id);
+        setShowAnswer(true);
+      }
     } else {
-      setStreak(0);
+      // Move to next question after showing the correct answer
+      setQuestionNumber((prev) => prev + 1);
+      setShowAnswer(false);
+      setIncorrect(''); // Reset incorrect state
+      setAnswerSelected(''); // Reset selected answer
     }
-    setCurrentQuiz(Math.floor(Math.random() * produceItems.length));
   };
+  
+  
+  const startAgain = () => {
+    setShowAnswer(false);
+    setQuestionNumber(1);
+    const fetchedQuestions = getRandomQuestions();
+    setQuestions(fetchedQuestions);
+    setScore(0);
+    setStreak(0);
+  }
 
   return (
     <div className="container mx-auto py-8">
@@ -79,35 +134,53 @@ const TeensZone: React.FC = () => {
             <CardTitle>Nutrition Quiz</CardTitle>
           </CardHeader>
           <CardContent>
-            {currentQuiz === null ? (
+            {currentQuiz === false ? (
               <Button onClick={startQuiz}>Start Quiz</Button>
             ) : (
               <div>
-                <p className="mb-4">Which produce is this?</p>
-                <div className="flex justify-center mb-4">
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    {React.createElement(produceItems[currentQuiz].icon, {
-                      size: 64,
-                    })}
-                  </motion.div>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  {produceItems.map((item, index) => (
-                    <Button
-                      key={item.name}
-                      onClick={() => handleAnswer(index === currentQuiz)}
-                    >
-                      {item.name}
-                    </Button>
-                  ))}
-                </div>
-                <p className="mt-4">
-                  Score: {score} | Streak: {streak}
-                </p>
+                {(questions.length > 0 && questionNumber < 5)  ? (
+                  <>
+                    <p className="mb-4">{questions[questionNumber - 1].question}</p>
+                    <div className="flex justify-center mb-4">
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                      </motion.div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      {questions[questionNumber - 1].options.map((option) => (
+                        <Button
+                          key={option.id}
+                          onClick={() => 
+                          {
+                            handleAnswer(option.id, questions[questionNumber - 1].correctAnswer);
+                            setAnswerSelected(option.id);
+                          }
+                          }
+                          className={clsx(
+                            "w-full border border-black my-2 bg-black text-white rounded-md",
+                            {"bg-red-800": option.id === incorrect && showAnswer},
+                            { "bg-green-700 text-white": option.id === questions[questionNumber - 1].correctAnswer && showAnswer }
+                          )}
+                        >
+                          {option.answer}
+                        </Button>
+                      ))}
+                    </div>
+                    <p className="mt-4">
+                      Score: {score} | Streak: {streak}
+                    </p>
+                  </>
+                ) : (
+                  <div>
+                    <h1 className="text-center text-primary">
+                    {` You streak was ${streak}`}
+                  </h1>
+                  <Button onClick={startAgain}>Start Again</Button>
+                  </div>
+                )}
               </div>
             )}
           </CardContent>
