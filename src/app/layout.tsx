@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import { Gabarito } from "next/font/google";
+
+import Footer from "./(landing)/Footer";
+import Navigation from "./(landing)/_components/navbar";
+
 import "./globals.css";
 
 const inter = Gabarito({ subsets: ["latin"] });
@@ -16,7 +20,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}> {children}</body>
+
+      <body className={inter.className}>
+
+      
+
+        <div className="overflow-x-hidden">
+        
+          <Navigation />
+          {children}
+            <Footer />
+        </div>
+
+      </body>
+
     </html>
   );
 }
