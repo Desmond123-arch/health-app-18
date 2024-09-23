@@ -1,45 +1,41 @@
-// components/ProduceCard.tsx
-
 import { motion } from "framer-motion";
-import React from "react";
+import Image from "next/image";
+import React, { useState } from "react";
 import { ProduceItem } from "./utils/data";
 
 interface ProduceCardProps {
   item: ProduceItem;
-  onSelect: (item: ProduceItem) => void;
+  onClick: () => void;
 }
 
-const ProduceCard: React.FC<ProduceCardProps> = ({ item, onSelect }) => {
+const ProduceCard: React.FC<ProduceCardProps> = ({ item, onClick }) => {
+  const [imageLoading, setImageLoading] = useState(true);
+
   return (
     <motion.div
+      className="flex flex-col gap-3 pb-3 cursor-pointer"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      className="cursor-pointer bg-white rounded-2xl shadow-lg overflow-hidden"
-      onClick={() => onSelect(item)}
+      onClick={onClick}
     >
-      <div
-        className="p-6 flex flex-col items-center"
-        style={{ backgroundColor: item.color }}
-      >
-        <motion.div
-          initial={{ rotate: 0 }}
-          animate={{ rotate: [0, -10, 10, -10, 10, 0] }}
-          transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 2 }}
-        >
-          <item.icon className="w-20 h-20 text-white" />
-        </motion.div>
-        <h3 className="mt-4 text-2xl font-bold text-white">{item.name}</h3>
+      <div className="relative w-full aspect-video bg-gray-200 rounded-xl overflow-hidden">
+        {imageLoading && (
+          <div className="absolute inset-0 bg-gray-200 animate-pulse" />
+        )}
+        <Image
+          src={item.imageUrl}
+          alt={item.name}
+          layout="fill"
+          objectFit="cover"
+          onLoadingComplete={() => setImageLoading(false)}
+        />
       </div>
-      <div className="p-4">
-        <ul className="space-y-2 mb-4">
-          {item.benefits.map((benefit, index) => (
-            <li key={index} className="text-gray-600 text-sm">
-              {benefit}
-            </li>
-          ))}
-        </ul>
-        <p className="text-lg font-semibold text-center">
-          Click to learn more!
+      <div>
+        <p className="text-[#151c0d] text-base font-medium leading-normal">
+          {item.name}
+        </p>
+        <p className="text-[#769c49] text-sm font-normal leading-normal">
+          {item.description}
         </p>
       </div>
     </motion.div>
