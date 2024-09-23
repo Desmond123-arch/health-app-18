@@ -2,7 +2,7 @@ import { CtaButton } from "./cta-button";
 
 const Hero = () => {
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-12 overflow-x-hidden">
       <div
         className="relative rounded-lg overflow-hidden bg-cover bg-center h-[500px] max-w-5xl mx-auto"
         style={{
@@ -19,7 +19,7 @@ const Hero = () => {
             Join Wellness Kids to learn about health, nutrition, and fun
             activities for a happier you!
           </p>
-          <div className="space-x-4">
+          <div className="">
             <CtaButton />
           </div>
         </div>

@@ -4,7 +4,7 @@ import WellKids from "./_components/hero/what";
 
 const Home = () => {
   return (
-    <div className="">
+    <div className="pt-20">
       <Hero />
       <WellKids />
       <CTASection />
