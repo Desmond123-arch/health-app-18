@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import React from "react";
 
 const CTASection: React.FC = () => {
@@ -14,18 +15,20 @@ const CTASection: React.FC = () => {
         </p>
         <div className="flex flex-row justify-center gap-4">
           <Button
+            asChild
             variant="secondary"
             size="lg"
             className="rounded-full bg-yellow-500 hover:bg-yellow-400 text-gray-900 font-semibold"
           >
-            Kids Zone
+            <Link href={"/kids"}>Kids Zone</Link>
           </Button>
           <Button
+            asChild
             variant="default"
             size="lg"
             className="rounded-full text-gray-900 font-semibold"
           >
-            Teens Zone
+            <Link href={"/teens"}>Teens Zone</Link>
           </Button>
         </div>
       </div>

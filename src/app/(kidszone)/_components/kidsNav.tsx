@@ -1,9 +1,9 @@
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Baby, HeartPulse } from "lucide-react";
+import { Home } from "lucide-react";
 import Link from "next/link";
 
-const Navigation = () => {
+const KidsNav = () => {
   return (
     <nav className="w-screen px-4 sm:px-6 lg:px-4 fixed z-50 bg-white">
       <div className="max-w-5xl  mx-auto flex justify-between items-center h-16 backdrop-blur-none">
@@ -17,23 +17,13 @@ const Navigation = () => {
         </div>
 
         <div className="flex items-center space-x-2">
-          <Link href="/kids">
-            <Button
-              variant="default"
-              className="inline-flex gap-2 rounded-full text-sm bg-green-500
-            hover:scale-110 transition duration-700 ease-in-out"
-            >
-              <Baby />
-              Kidszone
-            </Button>
-          </Link>
-          <Link href="/teens">
+          <Link href="/">
             <Button
               variant="outline"
               className="inline-flex text-black gap-2 rounded-full text-sm "
             >
-              <HeartPulse />
-              Teenszone
+              <Home />
+              Home
             </Button>
           </Link>
         </div>
@@ -42,4 +32,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default KidsNav;

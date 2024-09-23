@@ -63,8 +63,8 @@ const WellKids: React.FC = () => {
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
         {activities.map((activity, index) => (
-          <Card key={index} className="flex flex-col gap-3 pb-3">
-            <CardContent className="p-0">
+          <div key={index} className="flex flex-col gap-3 pb-3">
+            <div className="p-0">
               <div className="relative w-full aspect-video">
                 <Image
                   src={activity.image}
@@ -77,8 +77,8 @@ const WellKids: React.FC = () => {
               <p className="text-[#111518] text-base font-medium leading-normal mt-3 px-3">
                 {activity.title}
               </p>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         ))}
       </div>
 

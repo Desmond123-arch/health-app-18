@@ -14,9 +14,7 @@ const NutritionInfoPage: React.FC = () => {
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 100 }}
-      >
-        Nutrition for Your Changing Body
-      </motion.h1>
+      ></motion.h1>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -32,7 +30,7 @@ const NutritionInfoPage: React.FC = () => {
           Think you know your fruits and veggies? Take our fun quiz and discover
           how much you really know about nutrition!
         </p>
-        <Link href="/quiz" passHref>
+        <Link href="/teens/quiz" passHref>
           <Button
             variant="default"
             className="inline-flex gap-2 rounded-full text-sm bg-gradient-to-r from-green-400 to-blue-500 
