@@ -2,9 +2,9 @@ import { CtaButton } from "./cta-button";
 
 const Hero = () => {
   return (
-    <div className="container mx-auto px-4 lg:py-12 overflow-x-hidden">
+    <div className="mx-auto px-4 lg:py-12 overflow-x-hidden">
       <div
-        className="relative rounded-lg overflow-hidden bg-cover bg-center h-[500px] max-w-5xl mx-auto"
+        className="relative rounded-lg overflow-hidden bg-cover bg-center h-[500px] max-w-7xl mx-auto"
         style={{
           backgroundImage:
             "url('https://cdn.usegalileo.ai/sdxl10/5e42e715-20cf-405b-a14f-ddc0c97b3bff.png')",

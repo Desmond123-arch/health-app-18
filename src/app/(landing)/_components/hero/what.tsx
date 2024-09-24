@@ -48,7 +48,7 @@ const featuredActivities: string[] = [
 
 const WellKids: React.FC = () => {
   return (
-    <div className="flex max-w-5xl mx-auto flex-col gap-10 px-4 py-10">
+    <div className="flex max-w-7xl mx-auto flex-col gap-10 px-4 py-10">
       <div className="flex flex-col gap-4">
         <h1 className="text-[#111518] tracking-tight text-[32px] font-bold leading-tight sm:text-4xl sm:font-black sm:leading-tight sm:tracking-[-0.033em] max-w-[720px]">
           What you'll find in Well Kids
