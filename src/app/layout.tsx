@@ -11,6 +11,16 @@ const inter = Gabarito({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Nutrition App",
   description: "A nutrition app for kids and teens",
+  openGraph: {
+    title: "Nutrition App",
+    description: "A nutrition app for kids and teens",
+    url: "https://wellkids.kennyanyi.me",
+    images: [
+      {
+        url: "/opengraph-image.png", // replace with your actual image path
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -20,20 +30,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-
       <body className={inter.className}>
-
-      
-
         <div className="overflow-x-hidden">
-        
           <Navigation />
           {children}
-            <Footer />
+          <Footer />
         </div>
-
       </body>
-
     </html>
   );
 }
