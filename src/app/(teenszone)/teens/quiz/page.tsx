@@ -137,6 +137,7 @@ const TeensZone: React.FC = () => {
                 ) : (
                   <div className="text-center">
                     <h1 className="text-primary text-xl my-2">{`Your streak was ${streak}`}</h1>
+                    <p className="text-primary text-xl mb-2">Well done!</p>
                     <Button onClick={startAgain}>Start Again</Button>
                   </div>
                 )}
