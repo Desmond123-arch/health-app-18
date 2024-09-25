@@ -94,7 +94,7 @@ const TeensZone: React.FC = () => {
             ) : (
               <div>
                 <p className="mt-2 font-bold text-center">{`Question ${questionNumber} of ${questions.length}`}</p>
-                {questions.length > 0 && questionNumber <= questions.length ? (
+                {questions.length > 0 && questionNumber !== 5 ? (
                   <>
                     <p className="mb-4">{questions[questionNumber - 1].question}</p>
                     <div className="flex justify-center mb-4">
@@ -136,7 +136,7 @@ const TeensZone: React.FC = () => {
                   </>
                 ) : (
                   <div className="text-center">
-                    <h1 className="text-primary">{`Your streak was ${streak}`}</h1>
+                    <h1 className="text-primary text-xl my-2">{`Your streak was ${streak}`}</h1>
                     <Button onClick={startAgain}>Start Again</Button>
                   </div>
                 )}
