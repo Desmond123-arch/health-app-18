@@ -1,9 +1,9 @@
 "use client";
 import {
+  Celebrate,
   Modal,
   ModalBody,
   ModalContent,
-  ModalFooter,
   ModalTrigger,
 } from "@/components/ui/animated-modal";
 import { motion } from "framer-motion";
@@ -16,7 +16,7 @@ export function AnimatedModalDemo() {
   const [selectedItem, setSelectedItem] = useState<ProduceItem | null>(null);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 ">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
       {produceItems.map((item, index) => (
         <Modal key={index}>
           <ModalTrigger>
@@ -65,20 +65,13 @@ export function AnimatedModalDemo() {
               <div className="py-10 flex flex-wrap gap-x-4 gap-y-6 items-start justify-start max-w-sm mx-auto">
                 <div className="flex items-center justify-center">
                   <VitaminIcon className="mr-1 text-neutral-700 dark:text-neutral-300 h-4 w-4" />
-                  <span className="text-neutral-700 dark:text-neutral-300 text-sm text-center">
+                  <span className="text-neutral-700 dark:text-neutral-300 text-lg text-center">
                     {item.detailedDescription}
                   </span>
                 </div>
               </div>
+              <Celebrate />
             </ModalContent>
-            <ModalFooter className="gap-4">
-              <button className="px-2 py-1 bg-gray-200 text-black dark:bg-black dark:border-black dark:text-white border border-gray-300 rounded-md text-sm w-28">
-                Close
-              </button>
-              <button className="bg-green-500 text-white dark:bg-green-600 dark:text-white text-sm px-2 py-1 rounded-md border border-green-600 w-28">
-                Learn More
-              </button>
-            </ModalFooter>
           </ModalBody>
         </Modal>
       ))}

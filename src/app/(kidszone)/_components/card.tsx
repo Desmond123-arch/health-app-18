@@ -1,6 +1,6 @@
+import { Button } from "@/components/ui/button";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/fancy-card";
 import Image from "next/image";
-import Link from "next/link";
 import React, { useState } from "react";
 import { ProduceItem } from "./utils/data";
 
@@ -42,30 +42,16 @@ const ProduceCard: React.FC<ProduceCardProps> = ({ item, onClick }) => {
         <CardItem
           as="p"
           translateZ="60"
-          className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
+          className="text-neutral-500 text-lg max-w-sm mt-5 dark:text-neutral-300"
         >
-          Hover over this card to unleash the power of CSS perspective
+          Click on the me or the button to learn about {item.name}s
         </CardItem>
 
         {/* Button and Link */}
         <div className="flex justify-between items-center mt-20">
-          <CardItem
-            translateZ={20}
-            as={Link}
-            href="#"
-            onClick={onClick}
-            className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white cursor-pointer"
-          >
-            View Details →
-          </CardItem>
-          <CardItem
-            translateZ={20}
-            as="button"
-            className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
-            onClick={onClick}
-          >
-            Click me!
-          </CardItem>
+          <Button className="rounded-full" onClick={onClick}>
+            Click to learn
+          </Button>
         </div>
       </CardBody>
     </CardContainer>

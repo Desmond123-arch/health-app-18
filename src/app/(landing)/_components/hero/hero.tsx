@@ -13,11 +13,11 @@ const Hero = () => {
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
         <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Discover the fun in wellness
+            Brain Food for Bright Minds!
           </h1>
           <p className="text-lg md:text-xl mb-6 max-w-xl">
-            Join Wellness Kids to learn about health, nutrition, and fun
-            activities for a happier you!
+            Learn about fruits and veggies that help your brain work better and
+            keep you feeling sharp every day
           </p>
           <div className="">
             <CtaButton />

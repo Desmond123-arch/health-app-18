@@ -1,5 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
+import confetti from "canvas-confetti";
 import { AnimatePresence, motion } from "framer-motion";
 import React, {
   ReactNode,
@@ -198,22 +199,50 @@ const CloseIcon = () => {
       onClick={() => setOpen(false)}
       className="rounded-full absolute top-4 right-4 group"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="text-black dark:text-white h-4 w-4 group-hover:scale-125 group-hover:rotate-3 transition duration-200"
-      >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        <path d="M18 6l-12 12" />
-        <path d="M6 6l12 12" />
-      </svg>
+      <span>close</span>
+    </Button>
+  );
+};
+
+export const Celebrate = () => {
+  const handleClick = () => {
+    setOpen(false);
+    const end = Date.now() + 3 * 1000; // 3 seconds
+    const colors = ["#FF69B4", "#00BFFF", "#FFD700", "#32CD32"];
+
+    const frame = () => {
+      if (Date.now() > end) return;
+
+      confetti({
+        particleCount: 2,
+        angle: 60,
+        spread: 55,
+        startVelocity: 60,
+        origin: { x: 0, y: 0.5 },
+        colors: colors,
+      });
+      confetti({
+        particleCount: 2,
+        angle: 120,
+        spread: 55,
+        startVelocity: 60,
+        origin: { x: 1, y: 0.5 },
+        colors: colors,
+      });
+
+      requestAnimationFrame(frame);
+    };
+
+    frame();
+  };
+  const { setOpen } = useModal();
+  return (
+    <Button
+      variant={"default"}
+      onClick={handleClick}
+      className="w-fit rounded-full mx-auto"
+    >
+      celebrate and learn more
     </Button>
   );
 };

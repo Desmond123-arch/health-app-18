@@ -26,7 +26,7 @@ const TeensNav = () => {
               Home
             </Button>
           </Link>
-          <Link href="/">
+          <Link href="/teens/quiz">
             <Button
               variant="default"
               className="inline-flex text-white gap-2 rounded-full text-sm bg-green-500"

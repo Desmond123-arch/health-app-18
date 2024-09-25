@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="overflow-x-hidden">
+        <div className="overflow-x-hidden font-sans">
           <Navigation />
           {children}
           <Footer />
