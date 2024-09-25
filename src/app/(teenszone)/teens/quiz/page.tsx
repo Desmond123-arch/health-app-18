@@ -149,5 +149,4 @@ const TeensZone: React.FC = () => {
     </div>
   );
 };
-
 export default TeensZone;
